@@ -1,5 +1,5 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :edit, :update, :destroy]
+  before_action :set_episode, only: [:show, :edit, :crawl, :destroy]
 
   # GET /programs
   def index
@@ -11,6 +11,11 @@ class EpisodesController < ApplicationController
 
   # GET /programs/1
   def show
+  end
+
+  def crawl
+    EpisodeCrawler.new(@episode.uri + '&HD=1', @episode).run
+    redirect_back fallback_location: @episode
   end
 
   # # GET /programs/new
