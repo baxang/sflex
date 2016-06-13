@@ -7,9 +7,10 @@ class HomeCrawler
       ::Episode.find_or_initialize_by(uri: link.resolved_uri.to_s).tap do |episode|
         if episode.new_record?
           episode.series = Series.find_or_create_by(title: link.text)
+          episode.title = link.text
+          episode.save!
+          puts "#{link.text} saved."
         end
-        episode.title = link.text
-        puts "#{link.text} saved." if (episode.new_record? || episode.changed?) && episode.save!
       end
     end
     true
