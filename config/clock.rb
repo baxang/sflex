@@ -7,7 +7,7 @@ module Clockwork
     puts "Running #{job}"
   end
 
-  every(1.hour,    'new.episodes',  tz: 'UTC', at: '**:17') do
+  every(30.minutes,    'new.episodes',  tz: 'UTC', at: '**:17') do
     source = 'http://joovideo.com'
     crawler = ::HomeCrawler.new(source)
     crawler.run
