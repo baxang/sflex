@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Episodes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Series</th>
+      <th>Title</th>
+      <th>Media</th>
+      <th>Last update</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% episodes.each do |episode| %>
+      <tr>
+        <td><%= episode.series.title if episode.series %></td>
+        <td><%= episode.title %></td>
+        <td><%= episode.media_count %></td>
+        <td><%= time_ago_in_words episode.latest_media %></td>
+        <td><%= link_to 'Show', episode %></td>
+        <td><%= link_to 'Destroy', episode, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

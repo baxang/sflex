@@ -1,0 +1,15 @@
+<%= link_to 'Home', root_path %> <%= link_to @episode.series.title, @episode.series if @episode.series %>
+
+<p id="notice"><%= notice %></p>
+
+<h2><%= @episode.full_title %></h2>
+
+<% @episode.media.each do |medium| %>
+  <div>
+    <h3><%= medium.title %></h3>
+    <iframe frameborder="0" width="480" height="270"
+            src="<%= medium.uri %>"
+            allowfullscreen></iframe>
+  </div>
+<% end %>
+

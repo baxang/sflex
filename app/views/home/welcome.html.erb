@@ -1,0 +1,9 @@
+<table>
+  <% episodes.each do |program| %>
+    <tr>
+      <td><%= link_to program.series.title, program.series if program.series %></td>
+      <td><%= link_to program.title, program %></td>
+      <td><%= time_ago_in_words program.latest_media %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,10 @@
+<%= link_to 'Home', root_path %>
+
+<p id="notice"><%= notice %></p>
+
+<h2><%= @series.title %></h2>
+
+<% @series.episodes.each do |episode| %>
+  <li><%= link_to episode.title, episode %> <%= episode.visited_at %></li>
+<% end %>
+

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Series</h2>
+
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @series.each do |series| %>
+      <tr>
+        <td><%= series.title %></td>
+        <td><%= series.episodes_count %></td>
+        <td><%= link_to 'Show', series %></td>
+        <td><%= link_to 'Destroy', series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
