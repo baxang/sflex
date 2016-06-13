@@ -14,7 +14,7 @@ module Clockwork
   end
   every(5.minutes, 'episode.media', tz: 'UTC') do
     ::Episode.favourite.unvisited.limit(1).each do |episode|
-      crawler = ::EpisodeCrawler.new(episode.uri, episode)
+      crawler = ::EpisodeCrawler.new(episode.uri + '&HD=1', episode)
       crawler.run
     end
   end
