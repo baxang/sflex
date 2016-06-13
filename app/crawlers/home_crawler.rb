@@ -1,32 +1,24 @@
 class HomeCrawler
 
-  attr_reader :source, :page
+  include Crawler
 
-  def initialize(source)
-    @source = source
+  def run
+    episode_links.each do |link|
+      ::Episode.find_or_initialize_by(uri: link.resolved_uri.to_s).tap do |episode|
+        if episode.new_record?
+          episode.series = Series.find_or_create_by(title: link.text)
+        end
+        episode.title = link.text
+        puts "#{link.text} saved." if (episode.new_record? || episode.changed?) && episode.save!
+      end
+    end
   end
 
-  def page
-    @page ||= agent.get(source)
-  end
-
-  def links
-    page.links
-  end
+  private
 
   def episode_links(name = nil)
     links.select { |l| l.href =~ /^ViewMedia\.aspx\?Num=[0-9]+$/ }.reject { |l| l.text == name }
   end
 
-  def agent
-    @agent ||= Mechanize.new
-    @agent.tap do |agent|
-      agent.user_agent_alias = 'Windows IE 11'
-    end
-  end
-
-  def reset
-    @page = nil
-  end
 
 end

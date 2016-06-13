@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.0'
 # gem 'rack-cors'
 
 gem 'mechanize'
+gem 'sidekiq', '~>4.0'
 gem 'thor-rails'
 
 group :development, :test do
