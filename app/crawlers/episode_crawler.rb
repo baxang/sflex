@@ -49,6 +49,7 @@ class EpisodeCrawler
       episode.touch(:visited_at)
       sleep(2)
     end
+    true
   end
 
 end

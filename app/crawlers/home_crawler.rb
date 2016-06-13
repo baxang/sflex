@@ -12,6 +12,7 @@ class HomeCrawler
         puts "#{link.text} saved." if (episode.new_record? || episode.changed?) && episode.save!
       end
     end
+    true
   end
 
   private
