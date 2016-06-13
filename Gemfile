@@ -53,6 +53,8 @@ group :test do
   gem "rspec-rails", "3.5.0.beta1"
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
+  gem 'vcr', '~>3.0.3'
+  gem 'webmock', '~>2.1.0'
 end
 
 group :production do
