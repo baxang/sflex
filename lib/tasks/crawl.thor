@@ -26,7 +26,7 @@ class Crawl < Thor
     agent = ::Mechanize.new.tap do |ag|
       ag.user_agent_alias = 'Windows IE 11'
     end
-    ::Episode.unvisited.limit(1).each do |episode|
+    ::Episode.favourite.unvisited.limit(1).each do |episode|
       puts "Crawling #{episode.uri}."
       page = agent.get(episode.uri + '&HD=1')
       page.encoding = 'UTF-8'

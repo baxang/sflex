@@ -4,6 +4,7 @@ class Episode < ApplicationRecord
 
   validates_presence_of :series, allow_nil: true
 
+  scope :favourite, -> { joins(:series).where(series: { favourite: true }) }
   scope :unvisited, -> { where(visited_at: nil) }
 
   def full_title

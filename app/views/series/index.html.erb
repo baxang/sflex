@@ -6,17 +6,17 @@
   <thead>
     <tr>
       <td>Title</td>
-      <th colspan="2"></th>
+      <td>Title</td>
+      <td>Favourite</td>
     </tr>
   </thead>
 
   <tbody>
     <% @series.each do |series| %>
       <tr>
-        <td><%= series.title %></td>
+        <td><%= link_to series.title, series %></td>
         <td><%= series.episodes_count %></td>
-        <td><%= link_to 'Show', series %></td>
-        <td><%= link_to 'Destroy', series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to series.favourite? ? '❤️' : '+', favourite_series_path(series), method: :put %></td>
       </tr>
     <% end %>
   </tbody>

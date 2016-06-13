@@ -5,6 +5,6 @@
 <h2><%= @series.title %></h2>
 
 <% @series.episodes.each do |episode| %>
-  <li><%= link_to episode.title, episode %> <%= episode.visited_at %></li>
+  <li><%= link_to episode.title, episode %> <%= time_ago_in_words episode.visited_at %></li>
 <% end %>
 

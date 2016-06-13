@@ -1,15 +1,25 @@
 class SeriesController < ApplicationController
-  before_action :set_series, only: [:show, :edit, :update, :destroy]
+  before_action :set_series, only: [:show, :edit, :favourite]
 
   # GET /series
   # GET /series.json
   def index
-    @series = Series.select('series.*, COUNT(episodes.id) AS episodes_count').joins(:episodes).group('series.id')
+    @series = Series
+                .select('series.*, COUNT(episodes.id) AS episodes_count')
+                .joins(:episodes)
+                .group('series.id').order('series.favourite DESC, series.updated_at DESC')
   end
 
   # GET /series/1
   # GET /series/1.json
   def show
+  end
+
+  # UPDATE /series/1
+  # UPDATE /series/1.json
+  def favourite
+    @series.toggle!(:favourite)
+    redirect_back fallback_location: series_path
   end
 
   # # GET /series/new
