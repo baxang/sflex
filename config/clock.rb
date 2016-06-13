@@ -7,6 +7,15 @@ module Clockwork
     puts "Running #{job}"
   end
 
-  every(1.hour,    'new.episodes',  tz: 'UTC', at: '**:17') { NewEpisodesCrawlWorker.perform_async }
-  every(5.minutes, 'episode.media', tz: 'UTC') { FavouriteEpisodeCrawlWorker.perform_async }
+  every(1.hour,    'new.episodes',  tz: 'UTC', at: '**:17') do
+    source = 'http://joovideo.com'
+    crawler = ::HomeCrawler.new(source)
+    crawler.run
+  end
+  every(5.minutes, 'episode.media', tz: 'UTC') do
+    ::Episode.favourite.unvisited.limit(1).each do |episode|
+      crawler = ::EpisodeCrawler.new(episode.uri, episode)
+      crawler.run
+    end
+  end
 end

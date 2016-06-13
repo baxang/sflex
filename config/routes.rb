@@ -1,8 +1,4 @@
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/jobs'
-
   root 'home#welcome'
 
   resources :series, only: [:index, :show, :favourite] do

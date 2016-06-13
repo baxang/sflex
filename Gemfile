@@ -34,7 +34,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'clockwork', '~>2.0'
 gem 'mechanize'
 gem 'sidekiq', '~>4.0'
-gem 'sinatra', github: 'sinatra/sinatra', branch: 'master', require: nil
 gem 'thor-rails'
 
 group :development, :test do
