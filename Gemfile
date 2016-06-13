@@ -30,8 +30,10 @@ gem 'jbuilder', '~> 2.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'clockwork', '~>2.0'
 gem 'mechanize'
 gem 'sidekiq', '~>4.0'
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master', require: nil
 gem 'thor-rails'
 
 group :development, :test do
