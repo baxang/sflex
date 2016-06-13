@@ -23,6 +23,8 @@ module Crawler
     end
   end
 
-  delegate :links, to: :@page
+  def links
+    page.links
+  end
 
 end
